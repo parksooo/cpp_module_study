@@ -12,12 +12,12 @@
 
 #include "Karen.hpp"
 
-int main()
+int main(int ac, char **av)
 {
 	Karen k;
-
-	k.complain("DEBUG");
-	k.complain("INFO");
-	k.complain("WARNING");
-	k.complain("ERROR");
+	std::string level;
+	if (ac != 2)
+		return 1;
+	level = av[1];
+	k.complain(level);
 }
