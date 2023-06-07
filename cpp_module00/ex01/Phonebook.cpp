@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 19:03:47 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/01 19:37:12 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:12:24 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,43 +25,53 @@ void	Phonebook::add(void)
 {
 	std::string str;
 	
-	str = "";
 	if (this->index > 7)
 		std::cout << "Warning " << this->contacts[this->index % 8].get_firstname()
 			<< " WILL OVERWRITE" << std::endl;
-	while (!std::cin.eof() && str == "")
+	while (!std::cin.eof())
 	{
 		std::cout << "Press your first Name : ";
 		if (std::getline(std::cin, str) && str != "")
+		{
 			this->contacts[this->index % 8].set_firstname(str);
+			break ;
+		}
 	}
-	str = "";
-	while (!std::cin.eof() && str == "")
+	while (!std::cin.eof())
 	{
 		std::cout << "Press your last Name : ";
 		if (std::getline(std::cin, str) && str != "")
+		{
 			this->contacts[this->index % 8].set_lastname(str);
+			break ;
+		}
 	}
-	str = "";
-	while (!std::cin.eof() && str == "")
+	while (!std::cin.eof())
 	{
 		std::cout << "Press your nick Name : ";
 		if (std::getline(std::cin, str) && str != "")
+		{
 			this->contacts[this->index % 8].set_nick_name(str);
+			break ;
+		}
 	}
-	str = "";
-	while (!std::cin.eof() && str == "")
+	while (!std::cin.eof())
 	{
 		std::cout << "Press your phone number : ";
-		if (std::getline(std::cin, str) && str != "")
+		if (std::getline(std::cin, str) && str != "" && check_isnum(str))
+		{
 			this->contacts[this->index % 8].set_phone_num(str);
+			break ;
+		}
 	}
-	str = "";
-	while (!std::cin.eof() && str == "")
+	while (!std::cin.eof())
 	{
 		std::cout << "Press your darkest sercet : ";
 		if (std::getline(std::cin, str) && str != "")
+		{
 			this->contacts[this->index % 8].set_dark_secret(str);
+			break ;
+		}
 	}
 	this->index++;
 }

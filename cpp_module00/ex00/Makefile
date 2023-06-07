@@ -9,6 +9,7 @@ RM = rm -rf
 FLAGS = --std=c++98 -Wall -Wextra -Werror
 
 OBJS = $(SRCS:.cpp=.o)
+
 %.o : %.cpp
 	$(CPP) $(FLAGS) -c $< -o $@
 

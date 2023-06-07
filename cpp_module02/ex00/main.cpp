@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook_utils.hpp                                :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 16:37:05 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/07 17:13:27 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/07 15:55:36 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/07 16:02:57 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_UTILS_HPP
-# define PHONEBOOK_UTILS_HPP
-# include "Contact.hpp"
-# include <iostream>
-# include <sstream>
-# include <string>
+#include "Fixed.hpp"
 
-std::string	check_size(std::string data);
-int	check_isnum(std::string str);
-int	print_contacts(Contact contacts[8]);
+int main() 
+{
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
 
-#endif
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+
+	return 0;
+}

@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:35:47 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/05 13:52:17 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:13:17 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ std::string	check_size(std::string data)
 			data.insert(0, " ");
 	}
 	return (data);
+}
+
+int	check_isnum(std::string str)
+{
+	int len;
+
+	len = str.size();
+	for (int i = 0; i < len; i++)
+		if (!isdigit(str[i]))
+		{
+			std::cout << "Please press only number!!" << std::endl;
+			return (0);
+		}
+	return (1);
 }
 
 int	print_contacts(Contact contacts[8])

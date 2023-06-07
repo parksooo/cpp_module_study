@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook_utils.hpp                                :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 16:37:05 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/07 17:13:27 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/07 15:36:28 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/07 15:58:33 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_UTILS_HPP
-# define PHONEBOOK_UTILS_HPP
-# include "Contact.hpp"
+#ifndef FIXED_HPP
+# define FIXED_HPP
 # include <iostream>
-# include <sstream>
-# include <string>
 
-std::string	check_size(std::string data);
-int	check_isnum(std::string str);
-int	print_contacts(Contact contacts[8]);
-
+class Fixed{
+	private :
+			int	value;
+			const static int	bits = 8;
+	public	:
+			Fixed();
+			~Fixed();
+			Fixed(const Fixed& fixed);
+			Fixed& operator=(const Fixed& fixed);
+			int	getRawBits(void) const;
+			void	setRawBits(int const raw); 
+};
 #endif
