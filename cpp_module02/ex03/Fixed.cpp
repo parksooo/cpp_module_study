@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 20:05:06 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/08 14:49:43 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:19:09 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ Fixed&	Fixed::operator=(const Fixed &fixed)
 {
 	// std::cout << "Assignation operator called" << std::endl;
 	this->setRawBits(fixed.getRawBits());
-	return (*this);
+	return *this;
 }
 
 Fixed::~Fixed()
