@@ -1,6 +1,6 @@
-NAME = Karen
+NAME = Harl
 
-SRCS = main.cpp Karen.cpp
+SRCS = main.cpp Harl.cpp
 
 CPP = c++
 

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Karen.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 19:27:59 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/05 19:29:50 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/10 20:25:43 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/10 20:40:41 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KAREN_HPP
-# define KAREN_HPP
-# include <iostream>
+#include "ClapTrap.hpp"
 
-class Karen{
-	private	:
-			void	debug();
-			void	info();
-			void	warning();
-			void	error();
-	public	:
-			void	complain(std::string level);
-};
+int main()
+{
+	ClapTrap a;
+	ClapTrap b("su");
+	ClapTrap c;
 
-#endif
+	a.attack("su");
+	b.takeDamage(5);
+	b.beRepaired(3);
+	b.attack("default");
+	c = a;
+	a.takeDamage(10);
+	a.beRepaired(10);
+}

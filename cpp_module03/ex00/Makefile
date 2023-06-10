@@ -1,6 +1,6 @@
-NAME = Harlfilter
+NAME = ClapTrap
 
-SRCS = main.cpp Harl.cpp
+SRCS = main.cpp ClapTrap.cpp
 
 CPP = c++
 
