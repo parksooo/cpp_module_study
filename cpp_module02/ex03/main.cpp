@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:55:22 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/08 17:47:43 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:53:28 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	main(void)
 	Point	a(0, 5);
 	Point	b(5, 0);
 	Point	c(0, 0);
-	Point	p(1, 1);
-	Point	p2(4, 7);
+	Point	p(1, 2);
+	Point	p2(7, 7);
 
 	std::cout << "Point a.x = " << a.getX() << " a.y = " << a.getY() << std::endl;
 	std::cout << "Point b.x = " << b.getX() << " b.y = " << b.getY() << std::endl;

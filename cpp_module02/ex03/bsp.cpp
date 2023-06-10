@@ -6,28 +6,33 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:29:32 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/08 17:47:59 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:53:38 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
-#include <cmath>
 
-int calculate(Point const a, Point const b, Point const c)
+float calculate_alpha(Point const a, Point const b, Point const c, Point const p)
 {
-	int res = std::abs((a.getX().getRawBits() * (b.getY().getRawBits() - c.getY().getRawBits())) + 
-			(b.getX().getRawBits() * (c.getY().getRawBits() - a.getY().getRawBits())) + 
-			(c.getX().getRawBits() * (a.getY().getRawBits() + b.getY().getRawBits())));
+	return ((b.getY().toFloat() - c.getY().toFloat()) * (p.getX().toFloat() - c.getX().toFloat()) +
+		(c.getX().toFloat() - b.getX().toFloat()) * (p.getY().toFloat() - c.getY().toFloat())) /
+		((b.getY().toFloat() - c.getY().toFloat()) * (a.getX().toFloat() - c.getX().toFloat()) +
+		(c.getX().toFloat() - b.getX().toFloat()) * (a.getY().toFloat() - c.getY().toFloat()));
+}
 
-	return res;
+float calculate_beta(Point const a, Point const b, Point const c, Point const p)
+{
+	return ((c.getY().toFloat() - a.getY().toFloat()) * (p.getX().toFloat() - c.getX().toFloat()) +
+		(a.getX().toFloat() - c.getX().toFloat()) * (p.getY().toFloat() - c.getY().toFloat())) /
+		((b.getY().toFloat() - c.getY().toFloat()) * (a.getX().toFloat() - c.getX().toFloat()) +
+		(c.getX().toFloat() - b.getX().toFloat()) * (a.getY().toFloat() - c.getY().toFloat()));
 }
 
 bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
-	int n = calculate(a, b, c);
-	int aa = calculate(point, b, c);
-	int bb = calculate(a, point, c);
-	int cc = calculate(a, b, point);
+	float alpha = calculate_alpha(a, b, c, point);
+	float beta = calculate_beta(a, b, c, point);
+	float gamma = 1.0f - alpha - beta;
 
-	return (n == aa + bb + cc);
+	return 0 < alpha && 0 < beta && 0 < gamma;
 }
