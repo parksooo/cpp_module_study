@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 18:22:07 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/05/29 18:43:03 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:48:39 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int ac, char **av)
 				str[j] = std::toupper(str[j]);
 			}
 			std::cout << str;
+			if (i != ac - 1)
+				std::cout << " ";
 		}
 	}
 	std::cout << std::endl;
