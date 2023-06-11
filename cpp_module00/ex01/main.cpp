@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 19:14:02 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/07 19:34:52 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:54:42 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main()
 			std::cout << "BYE~" << std::endl;
 			return (0);
 		}
+		else
+			std::cout << "WRONG command please press RIGHT command" << std::endl;
 	}
 	return (0);
 }

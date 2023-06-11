@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 19:03:47 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/07 19:33:44 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/11 16:44:06 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,27 @@ void	Phonebook::add(void)
 	if (this->index > 7)
 		std::cout << "Warning " << this->contacts[this->index % 8].get_firstname()
 			<< " WILL OVERWRITE" << std::endl;
+	str = "";
 	while (!std::cin.eof())
 	{
 		std::cout << "Press your first Name : ";
-		if (std::getline(std::cin, str) && str != "")
+		if (std::getline(std::cin, str) && str != "" && check_alphabet(str))
 		{
 			this->contacts[this->index % 8].set_firstname(str);
 			break ;
 		}
 	}
+	str = "";
 	while (!std::cin.eof())
 	{
 		std::cout << "Press your last Name : ";
-		if (std::getline(std::cin, str) && str != "")
+		if (std::getline(std::cin, str) && str != "" && check_alphabet(str))
 		{
 			this->contacts[this->index % 8].set_lastname(str);
 			break ;
 		}
 	}
+	str = "";
 	while (!std::cin.eof())
 	{
 		std::cout << "Press your nick Name : ";
@@ -55,6 +58,7 @@ void	Phonebook::add(void)
 			break ;
 		}
 	}
+	str = "";
 	while (!std::cin.eof())
 	{
 		std::cout << "Press your phone number : ";
@@ -64,6 +68,7 @@ void	Phonebook::add(void)
 			break ;
 		}
 	}
+	str = "";
 	while (!std::cin.eof())
 	{
 		std::cout << "Press your darkest sercet : ";
