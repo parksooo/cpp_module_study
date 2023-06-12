@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 20:25:43 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 14:47:58 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/12 15:07:49 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/12 16:23:49 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef DOG_HPP
+# define DOG_HPP
+# include "Animal.hpp"
 
-int main()
-{
-	ScavTrap a("A");
-	ScavTrap b("B");
-
-	a.attack("B");
-	b.takeDamage(20);
-	b.beRepaired(3);
-	std::cout << std::endl;
-	b.attack("A");
-	a.takeDamage(20);
-	a.beRepaired(10);
-	std::cout << std::endl;
-	a.guardGate();
-	std::cout << std::endl;
-}
+class Dog : public Animal{
+	public	:
+			Dog();
+			Dog(Dog const &ob);
+			Dog& operator=(Dog const &ob);
+			~Dog();
+			void	makeSound() const;
+};
+#endif

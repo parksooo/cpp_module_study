@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 19:52:59 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 14:12:08 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/12 14:53:49 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/12 16:21:55 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 # include <iostream>
 
-class ClapTrap{
+class WrongAnimal{
 	protected	:
-			std::string name;
-			unsigned int hitPoint;
-			unsigned int energyPoint;
-			unsigned int attackDamage;
-	public	:
-			ClapTrap();
-			ClapTrap(std::string name);
-			ClapTrap(const ClapTrap &ob);
-			~ClapTrap();
-			ClapTrap& operator=(const ClapTrap &ob); 
-			void	attack(const std::string &target);
-			void	takeDamage(unsigned int amount);
-			void	beRepaired(unsigned int amount);
+				std::string type;
+	public		:
+				WrongAnimal();
+				WrongAnimal(WrongAnimal const &ob);
+				WrongAnimal& operator=(WrongAnimal const &ob);
+				~WrongAnimal();
+				void	makeSound() const;
+				std::string	getType() const;
 };
 #endif

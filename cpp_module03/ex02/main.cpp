@@ -6,25 +6,25 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 20:25:43 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 14:47:58 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:46:36 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-	ScavTrap a("A");
-	ScavTrap b("B");
+	FragTrap a("A");
+	FragTrap b("B");
 
 	a.attack("B");
-	b.takeDamage(20);
-	b.beRepaired(3);
+	b.takeDamage(30);
+	b.beRepaired(4);
 	std::cout << std::endl;
 	b.attack("A");
-	a.takeDamage(20);
-	a.beRepaired(10);
+	a.takeDamage(30);
+	a.beRepaired(2);
 	std::cout << std::endl;
-	a.guardGate();
+	a.highFivesGuys();
 	std::cout << std::endl;
 }

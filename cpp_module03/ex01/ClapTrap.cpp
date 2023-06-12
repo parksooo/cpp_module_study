@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Claptrap.cpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:57:14 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/10 20:39:26 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:18:19 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ ClapTrap::ClapTrap(const ClapTrap &ob)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap destructor called" << std::endl;
+	std::cout << "ClapTrap " << this->name << " destructor called" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &ob)
@@ -75,7 +75,8 @@ void ClapTrap::attack(const std::string &target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	this->hitPoint -= amount;
-	std::cout << "ClapTrap " << this->name << " takes " << amount << " damage!" << std::endl;
+	std::cout << "ClapTrap " << this->name << " takes " << amount << " damage!" \
+		<< std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -85,6 +86,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	else
 	{
 		this->hitPoint += amount;
-		std::cout << "ClapTrap " << this->name << " repairs itself!" << std::endl;
+		std::cout << "ClapTrap " << this->name << " repairs " << amount << " itself!" \
+		<< " It has " << this->hitPoint << " Hitpoint" << std::endl;
 	}
 }	

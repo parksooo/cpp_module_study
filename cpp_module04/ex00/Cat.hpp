@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 20:25:43 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 14:47:58 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/12 15:23:06 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/12 16:23:46 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
+# include "Animal.hpp"
 
-int main()
-{
-	ScavTrap a("A");
-	ScavTrap b("B");
-
-	a.attack("B");
-	b.takeDamage(20);
-	b.beRepaired(3);
-	std::cout << std::endl;
-	b.attack("A");
-	a.takeDamage(20);
-	a.beRepaired(10);
-	std::cout << std::endl;
-	a.guardGate();
-	std::cout << std::endl;
-}
+class Cat : public Animal{
+	public	:
+			Cat();
+			Cat(Cat const &ob);
+			Cat& operator=(Cat const &ob);
+			~Cat();
+			void	makeSound() const;
+};
+#endif

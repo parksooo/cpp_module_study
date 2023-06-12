@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 20:25:43 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 14:47:58 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/12 16:24:04 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/12 16:24:43 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
+# include "WrongAnimal.hpp"
 
-int main()
-{
-	ScavTrap a("A");
-	ScavTrap b("B");
-
-	a.attack("B");
-	b.takeDamage(20);
-	b.beRepaired(3);
-	std::cout << std::endl;
-	b.attack("A");
-	a.takeDamage(20);
-	a.beRepaired(10);
-	std::cout << std::endl;
-	a.guardGate();
-	std::cout << std::endl;
-}
+class WrongCat : public WrongAnimal{
+	public	:
+			WrongCat();
+			WrongCat(WrongCat const &ob);
+			WrongCat& operator=(WrongCat const &ob);
+			~WrongCat();
+			void	makeSound() const;
+};
+#endif

@@ -1,8 +1,6 @@
-NAME = ScavTrap
+NAME = Animal
 
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
-
-CPP = c++
+SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 
 RM = rm -rf
 
@@ -11,12 +9,12 @@ FLAGS = --std=c++98 -Wall -Wextra -Werror
 OBJS = $(SRCS:.cpp=.o)
 
 %.o : %.cpp
-	$(CPP) $(FLAGS) -c $< -o $@
+	$(CXX) $(FLAGS) -c $< -o $@
 
 all		: $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CPP) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(FLAGS) $(OBJS) -o $(NAME)
 
 
 clean :

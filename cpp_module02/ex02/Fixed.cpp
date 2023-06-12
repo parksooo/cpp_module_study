@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 20:05:06 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/08 14:49:43 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:09:52 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 Fixed::Fixed()
 {
-	// std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 	this->value = 0;
 }
 
 Fixed::Fixed(const int num)
 {
-	// std::cout << "Int constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
 	this->value = num << this->bits;
 }
 
 Fixed::Fixed(const float num)
 {
-	// std::cout << "Float constructor called" << std::endl;
+	std::cout << "Float constructor called" << std::endl;
 	this->value = roundf(num * (1 << this->bits));
 }
 
 Fixed:: Fixed(const Fixed &fixed)
 {
-	// std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 	*this = fixed;
 }
 
@@ -44,14 +44,14 @@ std::ostream& operator<<(std::ostream &os, const Fixed &fixed)
 
 Fixed&	Fixed::operator=(const Fixed &fixed)
 {
-	// std::cout << "Assignation operator called" << std::endl;
+	std::cout << "Assignation operator called" << std::endl;
 	this->setRawBits(fixed.getRawBits());
 	return (*this);
 }
 
 Fixed::~Fixed()
 {
-	// std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
 
 int	Fixed::toInt() const

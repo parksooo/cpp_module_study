@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 20:25:43 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 14:47:58 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/11 14:50:19 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/11 15:17:01 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+# include "ClapTrap.hpp"
 
-int main()
-{
-	ScavTrap a("A");
-	ScavTrap b("B");
-
-	a.attack("B");
-	b.takeDamage(20);
-	b.beRepaired(3);
-	std::cout << std::endl;
-	b.attack("A");
-	a.takeDamage(20);
-	a.beRepaired(10);
-	std::cout << std::endl;
-	a.guardGate();
-	std::cout << std::endl;
-}
+class FragTrap : public ClapTrap{
+	public	:
+			FragTrap();
+			FragTrap(std::string name);
+			FragTrap(FragTrap const &ob);
+			FragTrap& operator=(FragTrap const &ob);
+			~FragTrap();
+			void	highFivesGuys();
+};
+#endif
