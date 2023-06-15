@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 18:21:24 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/13 16:26:13 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/13 17:31:07 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/14 16:10:08 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef CURE_HPP
+# define CURE_HPP
+# include "AMateria.hpp"
 
-int main(int ac, char **av)
-{
-	Harl h;
-	std::string level;
-	if (ac != 2)
-		return 1;
-	level = av[1];
-	h.complain(level);
-}
+class Cure : public AMateria{
+	public	:
+			Cure();
+			~Cure();
+			Cure(Cure const &ob);
+			Cure& operator=(Cure const &ob);
+			AMateria *clone() const;
+};
+#endif

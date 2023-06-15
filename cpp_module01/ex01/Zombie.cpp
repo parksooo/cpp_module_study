@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 20:34:20 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/03 20:37:24 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:47:33 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 Zombie::Zombie()
 {
-
+	std::cout << "Zombie default constructor called" << std::endl;
 }
 
 Zombie::Zombie(std::string name)
 {
+	std::cout << "Zombie " << name << " constructor called" << std::endl;
 	this->name = name;
 }
 

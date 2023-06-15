@@ -1,6 +1,6 @@
-NAME = Harlfilter
+NAME = AMateria
 
-SRCS = main.cpp Harl.cpp
+SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp Floor.cpp
 
 RM = rm -rf
 

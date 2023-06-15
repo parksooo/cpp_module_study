@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 16:00:55 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 18:02:17 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:09:05 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 DiamondTrap::DiamondTrap() : name(ClapTrap::name)
 {
 	ClapTrap::name = name + "_clap_name";
+	this->attackDamage = 30;
 	std::cout << "DiamondTrap default construct called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap(std::string name) : name(name)
 {
-	this->name = name;
 	ClapTrap::name = name + "_clap_name";
 	this->attackDamage = 30;
 	std::cout << "DiamondTrap " << name << " construct called" << std::endl;
@@ -33,12 +33,14 @@ DiamondTrap::DiamondTrap(DiamondTrap const &ob) : ClapTrap(ob), FragTrap(ob), Sc
 
 DiamondTrap &DiamondTrap::operator=(DiamondTrap const &ob)
 {
-	this->name = ob.name;
-	ClapTrap::name = ob.name + "_clap_name";
-	this->hitPoint = ob.hitPoint;
-	this->energyPoint = ob.energyPoint;
-	this->attackDamage = ob.attackDamage;
-
+	if (this != &ob)
+	{
+		this->name = ob.name;
+		ClapTrap::name = ob.name + "_clap_name";
+		this->hitPoint = ob.hitPoint;
+		this->energyPoint = ob.energyPoint;
+		this->attackDamage = ob.attackDamage;
+	}
 	std::cout << "DiamondTrap " << this->name << " assignation construct called" << std::endl;
 	return *this;
 }

@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Floor.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 18:21:24 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/13 16:26:13 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/14 19:44:20 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/14 19:47:11 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef FLOOR_HPP
+# define FLOOR_HPP
+# include "AMateria.hpp"
 
-int main(int ac, char **av)
-{
-	Harl h;
-	std::string level;
-	if (ac != 2)
-		return 1;
-	level = av[1];
-	h.complain(level);
-}
+class Floor {
+	private	:
+			AMateria *floor[4];
+	public	:
+			Floor();
+			Floor(Floor const &ob);
+			Floor &operator=(Floor const &ob);
+			~Floor();
+			AMateria *getMateria(int idx) const;
+			void	setMateria(AMateria *m);
+};
+#endif

@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:29:02 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/12 19:23:58 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:33:02 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ int main()
 	for (int i = 0; i < 6; i++)
 		std::cout << a->getBrain()->getIdea(i) << " ";
 	std::cout << std::endl;
+	delete a;
 	
+	std::cout << std::endl;
+
+	Cat *b = new Cat();
+	std::cout << std::endl;
+
+	for (int i = 0; i < 6; i++)
+		std::cout << b->getBrain()->getIdea(i) << " ";
+	std::cout << std::endl;
+	b->getBrain()->setIdea("OH excited!", 1);
+	b->getBrain()->setIdea("So FUCKIN DAY..", 3);
+	for (int i = 0; i < 6; i++)
+		std::cout << b->getBrain()->getIdea(i) << " ";
+	std::cout << std::endl;
+	delete b;
 	return 0;
 }

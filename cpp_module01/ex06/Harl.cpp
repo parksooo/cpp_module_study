@@ -6,11 +6,21 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:21:22 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/10 20:46:43 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:59:43 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+
+Harl::Harl()
+{
+	std::cout << "Harl default constructor called" << std::endl;
+}
+
+Harl::~Harl()
+{
+	std::cout << "Harl destructor called" << std::endl;
+}
 
 void	Harl::debug()
 {
@@ -58,3 +68,4 @@ void	Harl::complain(std::string level)
 			this->error();
 	}
 }
+

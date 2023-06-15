@@ -12,6 +12,16 @@
 
 #include "Harl.hpp"
 
+Harl::Harl()
+{
+	std::cout << "Harl default constructor called" << std::endl;
+}
+
+Harl::~Harl()
+{
+	std::cout << "Harl destructor called" << std::endl;
+}
+
 void	Harl::debug()
 {
 	std::cout << "[ DEBUG ]" << std::endl;
@@ -39,10 +49,10 @@ void	Harl::error()
 void	Harl::complain(std::string level)
 {
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	void(Harl:: *karen[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	void(Harl:: *harl[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	for (int i = 0; i < 4; i++)
 	{
 		if (levels[i] == level)
-			(this->*karen[i])();
+			(this->*harl[i])();
 	}
 }

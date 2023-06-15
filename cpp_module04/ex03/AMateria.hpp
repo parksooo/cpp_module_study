@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 19:27:59 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/13 16:59:01 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/13 17:20:46 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/14 19:16:14 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 # include <iostream>
 
-class Harl{
-	private	:
-			void	debug();
-			void	info();
-			void	warning();
-			void	error();
-	public	:
-			Harl();
-			~Harl();
-			void	complain(std::string level);
+class ICharacter;
+class AMateria{
+	protected	:
+				std::string type;
+	public		:
+				AMateria();
+				AMateria(AMateria const &ob);
+				AMateria(std::string const &type);
+				AMateria &operator=(AMateria const &ob);
+				virtual ~AMateria();
+				std::string const &getType() const;
+				virtual AMateria *clone() const = 0;
+				virtual void use(ICharacter &target);
 };
-
 #endif

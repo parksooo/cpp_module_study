@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:27:59 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/10 20:46:31 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:01:27 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ class Harl{
 			void	warning();
 			void	error();
 	public	:
+			Harl();
+			~Harl();
 			void	complain(std::string level);
 };
 

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 18:21:24 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/13 16:26:13 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/13 17:25:45 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/13 17:27:41 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
+# include <iostream>
+# include "AMateria.hpp"
 
-int main(int ac, char **av)
-{
-	Harl h;
-	std::string level;
-	if (ac != 2)
-		return 1;
-	level = av[1];
-	h.complain(level);
-}
+class IMateriaSource{
+	public:
+			virtual ~IMateriaSource() {}
+			virtual void learnMateria(AMateria*) = 0;
+			virtual AMateria* createMateria(std::string const & type) = 0;
+};
+#endif
