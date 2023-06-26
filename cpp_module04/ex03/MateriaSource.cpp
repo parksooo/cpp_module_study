@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:43:29 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/14 19:40:46 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:04:03 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ MateriaSource &MateriaSource::operator=(MateriaSource const &ob)
 	if (this != &ob)
 	{
 		for (int i = 0; i < 4; i++)
+		{
+			if (this->slot[i])
+				delete this->slot[i];
 			this->slot[i] = ob.slot[i];
+		}
 	}
 	return *this;
 }

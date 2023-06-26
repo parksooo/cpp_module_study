@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:46:59 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/07 21:36:21 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/17 19:04:52 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	Fixed::toInt() const
 
 float Fixed::toFloat() const
 {
-	return (float)this->value / (1 << this->bits);
+	return static_cast<float>(this->value) / (1 << this->bits);
 }
 
 int	Fixed::getRawBits() const

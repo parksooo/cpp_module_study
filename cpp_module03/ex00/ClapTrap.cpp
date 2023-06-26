@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 19:57:14 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 15:18:27 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:57:47 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ ClapTrap::~ClapTrap()
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &ob)
 {
-	this->name = ob.name;
-	this->hitPoint = ob.hitPoint;
-	this->energyPoint = ob.energyPoint;
-	this->attackDamage = ob.attackDamage;
-
+	if (this != &ob)
+	{
+		this->name = ob.name;
+		this->hitPoint = ob.hitPoint;
+		this->energyPoint = ob.energyPoint;
+		this->attackDamage = ob.attackDamage;
+	}
 	std::cout << "ClapTrap " << this->name << " assignation constructor called" << std::endl;
 	return *this;
 }
@@ -87,5 +89,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 	{
 		std::cout << "ClapTrap " << this->name << " repairs " << amount << " itself!" \
 		<< " It has " << this->hitPoint << " Hitpoint" << std::endl;
+		this->hitPoint += amount;
 	}
 }	

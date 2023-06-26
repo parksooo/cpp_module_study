@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 14:22:29 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 15:43:26 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:17:25 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ ScavTrap::ScavTrap(const ScavTrap &ob)
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &ob)
 {
-	this->name = ob.name;
-	this->hitPoint = ob.hitPoint;
-	this->energyPoint = ob.energyPoint;
-	this->attackDamage = ob.attackDamage;
-
+	if (this != &ob)
+	{
+		this->name = ob.name;
+		this->hitPoint = ob.hitPoint;
+		this->energyPoint = ob.energyPoint;
+		this->attackDamage = ob.attackDamage;
+	}
 	std::cout << "Scavtrap " << this->name << " assignation constructor called" << std::endl;
 	return *this;
 }

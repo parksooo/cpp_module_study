@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 20:05:06 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 18:09:52 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/17 19:04:46 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	Fixed::toInt() const
 
 float Fixed::toFloat() const
 {
-	return (float)this->value / (1 << this->bits);
+	return static_cast<float>(this->value) / (1 << this->bits);
 }
 
 int	Fixed::getRawBits() const
@@ -164,9 +164,23 @@ const Fixed Fixed::operator--(int)
 	return res;
 }
 
+Fixed&	Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a < b)
+		return a;
+	return b;
+}
+
 const Fixed& Fixed::min(Fixed const &a, Fixed const &b)
 {
 	if (a < b)
+		return a;
+	return b;
+}
+
+Fixed& Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a > b)
 		return a;
 	return b;
 }

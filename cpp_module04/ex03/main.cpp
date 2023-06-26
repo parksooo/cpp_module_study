@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:58:13 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/15 20:04:49 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:07:46 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 #include "Floor.hpp"
 
 #include <iostream>
-void	leak()
-{
-	system("leaks AMateria");
-}
+// void	leak()
+// {
+// 	system("leaks AMateria");
+// }
 int main()
 {
 	IMateriaSource* src = new MateriaSource();
@@ -40,11 +40,13 @@ int main()
 	me->use(0, *bob);
 	me->use(1, *bob);
 	me->unequip(0);
+	me->unequip(1);
 	
 	delete tmp1;
+	delete tmp2;
 	delete bob;
 	delete me;
 	delete src;
-	atexit(leak);
+	// atexit(leak);
 	return 0;
 }

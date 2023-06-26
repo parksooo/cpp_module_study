@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:20:43 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/14 18:57:04 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:04:43 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ Character &Character::operator=(Character const &ob)
 	{
 		this->name = ob.name;
 		for (int i = 0; i < 4; i++)
+		{
+			if (this->inventory[i])
+				delete this->inventory[i];
 			this->inventory[i] = ob.inventory[i];
+		}
 	}
 	return *this;
 }

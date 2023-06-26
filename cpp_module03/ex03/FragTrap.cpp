@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:13:34 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/11 15:47:15 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:19:48 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ FragTrap::FragTrap(FragTrap const &ob)
 
 FragTrap &FragTrap::operator=(FragTrap const &ob)
 {
-	this->name = ob.name;
-	this->hitPoint = ob.hitPoint;
-	this->energyPoint = ob.energyPoint;
-	this->attackDamage = ob.attackDamage;
-
+	if (this != &ob)
+	{
+		this->name = ob.name;
+		this->hitPoint = ob.hitPoint;
+		this->energyPoint = ob.energyPoint;
+		this->attackDamage = ob.attackDamage;
+	}
 	std::cout << "FragTrap " << this->name << " assignation constructor called" << std::endl;
 	return *this;
 }
