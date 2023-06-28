@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Floor.hpp                                          :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 19:44:20 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/14 19:47:11 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/06/28 19:28:58 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/06/28 19:44:07 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLOOR_HPP
-# define FLOOR_HPP
-# include "AMateria.hpp"
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
+# include <iostream>
+# include <exception>
 
-class Floor {
+class Bureaucrat {
 	private	:
-			AMateria *floor[4];
+			const std::string name;
+			int	grade;
 	public	:
-			Floor();
-			Floor(Floor const &ob);
-			Floor &operator=(Floor const &ob);
-			~Floor();
-			AMateria *getMateria(int idx) const;
-			void	setMateria(AMateria *m);
+			std::string const &getName() const;
+			int	const getGrade() const;
+			const char * what() const noexcept override {
+				return ""
+			}
+
 };
 #endif

@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:58:13 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/06/26 15:07:46 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:23:21 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "Character.hpp"
 #include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
-#include "Floor.hpp"
 
 #include <iostream>
 // void	leak()
