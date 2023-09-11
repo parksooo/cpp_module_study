@@ -16,5 +16,4 @@ int main(){
 	std::cout << d << std::endl;
 	d.incrementGrade();
 	std::cout << d << std::endl;
-
 }

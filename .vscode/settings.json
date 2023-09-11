@@ -63,6 +63,9 @@
 		"typeinfo": "cpp",
 		"unordered_map": "cpp",
 		"utility": "cpp",
-		"vector": "cpp"
+		"vector": "cpp",
+		"filesystem": "cpp",
+		"memory_resource": "cpp",
+		"variant": "cpp"
 	}
 }

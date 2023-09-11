@@ -19,10 +19,10 @@
 #include "MateriaSource.hpp"
 
 #include <iostream>
-// void	leak()
-// {
-// 	system("leaks AMateria");
-// }
+void	leak()
+{
+	system("leaks AMateria");
+}
 int main()
 {
 	IMateriaSource* src = new MateriaSource();
@@ -41,11 +41,12 @@ int main()
 	me->unequip(0);
 	me->unequip(1);
 	
-	delete tmp1;
-	delete tmp2;
+	// delete tmp1;
+	// delete tmp2;
 	delete bob;
 	delete me;
 	delete src;
-	// atexit(leak);
+	atexit(leak);
+	// system("leaks AMateria");
 	return 0;
 }
