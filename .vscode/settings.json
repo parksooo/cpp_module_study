@@ -67,5 +67,7 @@
 		"filesystem": "cpp",
 		"memory_resource": "cpp",
 		"variant": "cpp"
-	}
+	},
+	"C_Cpp.errorSquiggles": "disabled",
+	"C_Cpp.dimInactiveRegions": false
 }
