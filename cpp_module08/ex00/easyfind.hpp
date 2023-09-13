@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarTpye.hpp                                     :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 13:56:56 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/13 14:07:40 by suhwpark         ###   ########.fr       */
+/*   Created: 2023/09/13 20:07:55 by suhwpark          #+#    #+#             */
+/*   Updated: 2023/09/13 20:23:36 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARTYPE_HPP
-# define SCALARTYPE_HPP
+#ifndef EASYFIND_HPP
+# define EASYFIND_HPP
 # include <iostream>
+# include <algorithm>
 
-class ScalarTpye {
-    private :
-            std::string _str;
-            int _int;
-            float _float;
-            double _double;
-    public  :
+template <typename T>
+typename T::iterator    easyfind(T &container, int value) {
+    typename T::iterator iter;
+
+    iter = std::find(container.begin(), container.end(), value);
+    if (iter == container.end())
+        throw std::runtime_error("No value in container");
+    return iter;
 }
 #endif

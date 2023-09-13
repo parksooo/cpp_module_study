@@ -66,7 +66,10 @@
 		"vector": "cpp",
 		"filesystem": "cpp",
 		"memory_resource": "cpp",
-		"variant": "cpp"
+		"variant": "cpp",
+		"cfloat": "cpp",
+		"list": "cpp",
+		"__cxx_version": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
 	"C_Cpp.dimInactiveRegions": false

@@ -1,6 +1,6 @@
-NAME = converter
+NAME = EasyFind
 
-SRCS = main.cpp ScalarType.cpp
+SRCS = main.cpp
 
 RM = rm -rf
 

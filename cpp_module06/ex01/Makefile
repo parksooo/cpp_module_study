@@ -1,6 +1,6 @@
-NAME = converter
+NAME = Serialization
 
-SRCS = main.cpp ScalarType.cpp
+SRCS = main.cpp Serialization.cpp
 
 RM = rm -rf
 
