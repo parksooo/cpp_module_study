@@ -24,12 +24,12 @@ class BitCoinCalculator {
 
     private :
             std::map<std::string, float> 			dbData;
-            std::string								validateDbDate(std::string _date) const;
-            float									validateDbFloat(std::string _value) const;
+            std::string								validateDbDate(std::string _date);
+            float									validateDbFloat(std::string _value);
 			std::map<std::string, float>			validateInputFile(char *file);
-            std::pair<std::string, float>	        filemakePairs(std::string read) const;
-            void                                    checkCsvFile() const;
-            void                                    printMyBitCoin(std::pair<std::string, float> inputMap) const;
+            std::pair<std::string, float>	        filemakePairs(std::string read);
+            void                                    checkCsvFile();
+            void                                    printMyBitCoin(std::map<std::string, float> inputMap);
     public  :
             BitCoinCalculator();
             BitCoinCalculator(const BitCoinCalculator &ob);
@@ -51,6 +51,6 @@ class BitCoinCalculator {
                 public  :
                         const char *what() const throw();
             };
-            void    letSomeTasteBitCoin(char *file) const;
+            void    letSomeTasteBitCoin(char *file);
 };
 #endif

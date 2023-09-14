@@ -20,5 +20,4 @@ int main(int ac, char** av) {
 		std::cout << "Error : check Arguments" << std::endl;
 	}
 	a.letSomeTasteBitCoin(av[1]);
-
 }

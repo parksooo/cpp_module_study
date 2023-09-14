@@ -23,7 +23,9 @@ BitCoinCalculator::BitCoinCalculator(const BitCoinCalculator &ob)
 
 BitCoinCalculator &BitCoinCalculator::operator=(const BitCoinCalculator &ob)
 {
-    *this = ob;
+	if (this != &ob) {
+		this->dbData = ob.dbData;
+	}
 	return *this;
 }
 
@@ -31,20 +33,20 @@ BitCoinCalculator::~BitCoinCalculator()
 {
 }
 
-void BitCoinCalculator::letSomeTasteBitCoin(char *file) const
+void BitCoinCalculator::letSomeTasteBitCoin(char *file)
 {
 	std::map<std::string, float> inputMap;
+	
 	try {
 		checkCsvFile();
-	} catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-	try {
 		inputMap = validateInputFile(file);
+	// for (std::map<std::string, float>::iterator it = inputMap.begin(); it != inputMap.end(); it++) {
+	// 	std::cout << "Key : " << it->first << "Value : " << it->second << std::end;
+	// }
+		printMyBitCoin(inputMap);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-
 }
 
 // void	displaya(std::map<std::string, float> map) {
@@ -52,7 +54,7 @@ void BitCoinCalculator::letSomeTasteBitCoin(char *file) const
 // 		std::cout << "Key : " << it->first << " | Value : " << it->second << "\n";
 // }
 
-void BitCoinCalculator::checkCsvFile() const
+void BitCoinCalculator::checkCsvFile()
 {
     std::ifstream	ifst("data.csv");
     std::string		read;
@@ -68,15 +70,14 @@ void BitCoinCalculator::checkCsvFile() const
 		if (read == "date,exchange_rate")
 			continue;
         commaPos = read.find(',');
-		_date = validateDate(read.substr(0, commaPos));
-        _value = validateFloat(read.substr(commaPos + 1, read.length()));
-        this->dbData.insert(std::pair<std::string, float>(read.substr(0, commaPos), _value));
+		_date = validateDbDate(read.substr(0, commaPos));
+        _value = validateDbFloat(read.substr(commaPos + 1, read.length()));
+        this->dbData.insert(std::make_pair(read.substr(0, commaPos), _value));
 	}
-	displaya(this->dbData);
 }
 
 
-std::string    BitCoinCalculator::validateDbDate(std::string _date) const
+std::string    BitCoinCalculator::validateDbDate(std::string _date)
 {
 	std::string split;
 	std::istringstream ss(_date);
@@ -113,7 +114,7 @@ std::string    BitCoinCalculator::validateDbDate(std::string _date) const
 	return _date;
 }
 
-float   BitCoinCalculator::validateDbFloat(std::string _value) const
+float   BitCoinCalculator::validateDbFloat(std::string _value)
 {
 	char *remain = NULL;
 	double value = std::strtod(_value.c_str(), &remain);
@@ -136,55 +137,57 @@ void	validateFirstLineInFile(std::string _str)
 	while (std::getline(ss, split, ' ')) {
 		if (idx == 0) {
 			if (split != "date")
-				throw BadInputFileForm();
+				throw BitCoinCalculator::BadInputFileForm();
 		}
 		if (idx == 1) {
 			if (split != "|")
-				throw BadInputFileForm();
+				throw BitCoinCalculator::BadInputFileForm();
 		}
 		if (idx == 2) {
 			if (split != "value")
-				throw BadInputFileForm();
+				throw BitCoinCalculator::BadInputFileForm();
 		}
 		idx++;
 	}
 	if (idx != 3)
-		throw BadInputFileForm();
+		throw BitCoinCalculator::BadInputFileForm();
 }
 
-std::pair<std::string, float>	BitCoinCalculator::filemakePairs(std::string read) const
+std::pair<std::string, float>	BitCoinCalculator::filemakePairs(std::string read)
 {
 	std::istringstream ss(read);
 	std::string split;
-	size_t		idx;
 	std::pair<std::string, float> result;
+	std::string _date;
+	size_t		idx = 0;
+	float		_value = 0.0;
+
 	while (std::getline(ss, split, ' ')) {
-		std::string _date;
-		float		_value;
 		if (idx == 0) {
 			try {
 				_date = validateDbDate(split);
 			} catch (std::exception &e) {
-				return std::pair<std::string, float>("Error : Wrong Date Format.", -FLT_MAX);
+				return std::make_pair("Error : Wrong Date Format.", -FLT_MAX);
 			}
 		}
 		if (idx == 1) {
 			if (split != "|") {
-				return std::pair<std::string, float>("Error : Wrong Delimiter Format.", -FLT_MAX);
+				return std::make_pair("Error : Wrong Delimiter Format.", -FLT_MAX);
 			}
 		}
 		if (idx == 2) {
 			try {
-				_value = validateDbValue(split);
+				_value = validateDbFloat(split);
 			} catch (std::exception &e) {
-				return std::pair<std::string, float>("Error : Wrong Value Format.", -FLT_MAX);
+				return std::make_pair("Error : Wrong Value Format.", -FLT_MAX);
 			}
 		}
 		idx++;
-		result = std::pair<std::string, float>(_date, _value);
 	}
 	if (idx != 3)
-		return std::pair<std::string, float>("Error : Wrong Format.", -FLT_MAX);
+		return std::make_pair("Error : Wrong Format.", -FLT_MAX);
+	else
+		result = std::make_pair(_date, _value);
 	return result;
 }
 
@@ -196,9 +199,9 @@ std::map<std::string, float> BitCoinCalculator::validateInputFile(char	*file)
 
 	if (!input)
 		throw InvalidInputFile();
-	std::getline(file, read);
+	std::getline(input, read);
 	validateFirstLineInFile(read);
-	while (std::getline(file, read)) {
+	while (std::getline(input, read)) {
 		result.insert(filemakePairs(read));		
 	}
 	return result;
@@ -206,11 +209,11 @@ std::map<std::string, float> BitCoinCalculator::validateInputFile(char	*file)
 
 void	printPairSource(std::string _date, float _value, float _advantage)
 {
-	_value == static_cast<int>(_value) ? std::cout << _date << " => " << static_cast<int>(_value) << " = " << _advantage
-		: std::cout << _date << " => " << _value << " = " << _advantage;
+	_value == static_cast<int>(_value) ? std::cout << _date << " => " << static_cast<int>(_value) << " = " << _advantage << std::endl
+		: std::cout << _date << " => " << _value << " = " << _advantage << std::endl;
 }
 
-void BitCoinCalculator::printMyBitCoin(std::pair<std::string, float> inputMap) const
+void BitCoinCalculator::printMyBitCoin(std::map<std::string, float> inputMap)
 {
 	std::map<std::string, float>::const_iterator dbIter;
 
@@ -218,17 +221,17 @@ void BitCoinCalculator::printMyBitCoin(std::pair<std::string, float> inputMap) c
 			iter != inputMap.end(); iter++) {
 		float res;
 		
-		if (iter.second == -FLT_MAX) {
-			std::cout << iter.first << std::endl;
+		if (iter->second == -FLT_MAX) {
+			std::cout << iter->first << std::endl;
 		} else {
-			dbIter = this->dbData.find(iter.first);
+			dbIter = this->dbData.find(iter->first);
 			if (dbIter == this->dbData.begin()){
 				std::cout << "Error : Wrong Date." << std::endl;
 				continue ;
 			}
 			--dbIter;
-			res = (dbIter.second) * iter.second;
-			printPairSource(iter.first, iter.second, res);
+			res = (dbIter->second) * iter->second;
+			printPairSource(iter->first, iter->second, res);
 		}
 	}
 }
