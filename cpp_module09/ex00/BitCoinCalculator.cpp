@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:39:11 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/14 22:17:35 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:19:53 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,15 @@ BitCoinCalculator::~BitCoinCalculator()
 
 void BitCoinCalculator::letSomeTasteBitCoin(char *file)
 {
-	std::map<std::string, float> inputMap;
+	std::multimap<std::string, float> inputMap;
 	
 	try {
 		checkCsvFile();
-		inputMap = validateInputFile(file);
-	// for (std::map<std::string, float>::iterator it = inputMap.begin(); it != inputMap.end(); it++) {
-	// 	std::cout << "Key : " << it->first << "Value : " << it->second << std::end;
-	// }
-		printMyBitCoin(inputMap);
+		inputMap = calculateInputFile(file);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 }
-
-// void	displaya(std::map<std::string, float> map) {
-// 	for (std::map<std::string, float>::iterator it = map.begin(); it != map.end(); it++)
-// 		std::cout << "Key : " << it->first << " | Value : " << it->second << "\n";
-// }
 
 void BitCoinCalculator::checkCsvFile()
 {
@@ -85,32 +76,32 @@ std::string    BitCoinCalculator::validateDbDate(std::string _date)
 	size_t idx = 0;
 		
 	if (_date.length() != 10)
-		throw InvalidDate();
+		throw InvalidDate("Error : bad input");
 	while(std::getline(ss, split, '-')) {
 		if (idx == 0) {
 			std::istringstream(split) >> year;
 			if (year < 1000 || year > 9999)
-				throw InvalidDate();
+				throw InvalidDate("Error : bad input");
 		} else if (idx == 1) {
 			std::istringstream(split) >> month;
 			if (month < 1 || month > 12)
-				throw InvalidDate();
+				throw InvalidDate("Error : bad input");
 		} else if (idx == 2) {
 			std::istringstream(split) >> day;
 			if (day < 1 || day > 31)
-				throw InvalidDate();
+				throw InvalidDate("Error : bad input");
 			if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11))
-				throw InvalidDate();
+				throw InvalidDate("Error : bad input");
 			if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
 				if (day > 29 && month == 2)
-					throw InvalidDate();
+					throw InvalidDate("Error : bad input");
 			} else if (day > 28 && month == 2)
-				throw InvalidDate();
+				throw InvalidDate("Error : bad input");
 		}
 		idx++;
 	}
 	if (idx != 3)
-		throw InvalidDate();
+		throw InvalidDate("Error : bad input");
 	return _date;
 }
 
@@ -120,11 +111,11 @@ float   BitCoinCalculator::validateDbFloat(std::string _value)
 	double value = std::strtod(_value.c_str(), &remain);
 	
 	if (value == 0.0 && !std::isdigit(_value[0]))
-		throw InvalidValue();
+		throw InvalidValue("Error : bad input");
 	if (*remain && std::strcmp(remain, "f"))
-		throw InvalidValue();
+		throw InvalidValue("Error : Not float input");
 	if (value < 0)
-		throw InvalidValue();
+		throw InvalidValue("Error : not a positive number.");
 	return static_cast<float>(value);
 }
 
@@ -167,19 +158,22 @@ std::pair<std::string, float>	BitCoinCalculator::filemakePairs(std::string read)
 			try {
 				_date = validateDbDate(split);
 			} catch (std::exception &e) {
-				return std::make_pair("Error : Wrong Date Format.", -FLT_MAX);
+				std::string msg = e.what();
+				return std::make_pair(msg + " => " + split, -FLT_MAX);
 			}
 		}
 		if (idx == 1) {
 			if (split != "|") {
-				return std::make_pair("Error : Wrong Delimiter Format.", -FLT_MAX);
+				return std::make_pair("Error : Wrong Format.", -FLT_MAX);
 			}
 		}
 		if (idx == 2) {
 			try {
 				_value = validateDbFloat(split);
+				if (_value >= INT_MAX)
+					return std::make_pair("Error : too large a number.", -FLT_MAX);
 			} catch (std::exception &e) {
-				return std::make_pair("Error : Wrong Value Format.", -FLT_MAX);
+				return std::make_pair(e.what(), -FLT_MAX);
 			}
 		}
 		idx++;
@@ -191,18 +185,19 @@ std::pair<std::string, float>	BitCoinCalculator::filemakePairs(std::string read)
 	return result;
 }
 
-std::map<std::string, float> BitCoinCalculator::validateInputFile(char	*file)
+std::multimap<std::string, float> BitCoinCalculator::calculateInputFile(char	*file)
 {
     std::ifstream input(file);
 	std::string read;
-	std::map<std::string, float> result;
+	std::multimap<std::string, float> result;
 
 	if (!input)
 		throw InvalidInputFile();
 	std::getline(input, read);
 	validateFirstLineInFile(read);
 	while (std::getline(input, read)) {
-		result.insert(filemakePairs(read));		
+		std::pair<std::string, float> pairs = filemakePairs(read);
+		printMyBitCoin(pairs);	
 	}
 	return result;
 }
@@ -213,37 +208,28 @@ void	printPairSource(std::string _date, float _value, float _advantage)
 		: std::cout << _date << " => " << _value << " = " << _advantage << std::endl;
 }
 
-void BitCoinCalculator::printMyBitCoin(std::map<std::string, float> inputMap)
+void BitCoinCalculator::printMyBitCoin(std::pair<std::string, float> pair)
 {
-	std::map<std::string, float>::const_iterator dbIter;
+	std::multimap<std::string, float>::iterator dbIter;
+	float res = 0.0;
 
-	for(std::map<std::string, float>::iterator iter = inputMap.begin();
-			iter != inputMap.end(); iter++) {
-		float res;
-		
-		if (iter->second == -FLT_MAX) {
-			std::cout << iter->first << std::endl;
-		} else {
-			dbIter = this->dbData.find(iter->first);
-			if (dbIter == this->dbData.begin()){
-				std::cout << "Error : Wrong Date." << std::endl;
-				continue ;
-			}
-			--dbIter;
-			res = (dbIter->second) * iter->second;
-			printPairSource(iter->first, iter->second, res);
-		}
+	if (pair.second == -FLT_MAX) {
+		std::cout << pair.first << std::endl;
+		return ;
 	}
-}
-
-const char *BitCoinCalculator::InvalidDate::what() const throw()
-{
-    return "Invalided Date Form.";
-}
-
-const char *BitCoinCalculator::InvalidValue::what() const throw()
-{
-    return "Invalided Value Form.";
+	dbIter = this->dbData.find(pair.first);
+	if (dbIter != this->dbData.end()){
+		res = dbIter->second * pair.second;	
+	} else {
+		dbIter = this->dbData.lower_bound(pair.first);			
+		if (dbIter == this->dbData.begin()){
+			std::cout << "Error : Wrong Date." << std::endl;
+			return ;
+		}
+		--dbIter;
+		res = dbIter->second * pair.second;
+	}
+	printPairSource(pair.first, pair.second, res);
 }
 
 const char *BitCoinCalculator::InvalidInputFile::what() const throw()

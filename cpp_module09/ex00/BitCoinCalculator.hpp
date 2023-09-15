@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:29:34 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/14 22:17:40 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:19:10 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,30 @@
 # include <map>
 # include <cstdlib>
 # include <cfloat>
+# include <math.h>
 
 class BitCoinCalculator {
 
     private :
-            std::map<std::string, float> 			dbData;
+            std::multimap<std::string, float> 			dbData;
             std::string								validateDbDate(std::string _date);
             float									validateDbFloat(std::string _value);
-			std::map<std::string, float>			validateInputFile(char *file);
+			std::multimap<std::string, float>			calculateInputFile(char *file);
             std::pair<std::string, float>	        filemakePairs(std::string read);
             void                                    checkCsvFile();
-            void                                    printMyBitCoin(std::map<std::string, float> inputMap);
+            void                                    printMyBitCoin(std::pair<std::string, float> pair);
     public  :
             BitCoinCalculator();
             BitCoinCalculator(const BitCoinCalculator &ob);
             BitCoinCalculator& operator=(const BitCoinCalculator &ob);
             ~BitCoinCalculator();
-            class InvalidDate : public std::exception {
+            class InvalidDate : public std::invalid_argument {
                 public :
-                        const char *what() const throw();
+                        InvalidDate(const std::string &msg) : std::invalid_argument(msg) {}
             };
-            class InvalidValue : public std::exception {
+            class InvalidValue : public std::invalid_argument{
                 public  :
-                        const char *what() const throw();
+                        InvalidValue(const std::string &msg) : std::invalid_argument(msg) {}
             };
             class InvalidInputFile : public std::exception {
                 public  :
