@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:36:23 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/15 18:30:20 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:56:59 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,21 @@
 class RPN {
     private :
             std::stack<std::string> avs;
+            int avsCount;
+            int operatorCount;
             std::stack<double> rpn;
             void    split(std::string av);
-            // void    calculate();
+            void    calculate();
+            std::string    validateInput(std::string input);
     public  :
             RPN();
             RPN(const RPN &ob);
             RPN& operator=(const RPN &ob);
             ~RPN();
             void    letsDoPolandGame(char *av);
-            class Error : public std::exception {
+            class ErrorRPN : public std::exception {
                 public :
-						const char * what(void) const throw(); 
+			const char * what(void) const throw(); 
             };
 };
 #endif
