@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:47:26 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/13 21:25:08 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:52:45 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void Span::addNumber(int num)
 
 int Span::shortestSpan() const
 {
-    if (this->_vector.size() < 3)
+    if (this->_vector.size() < 2)
         throw std::out_of_range("Too short size");
     std::vector<int> tmp(this->_vector);
     std::sort(tmp.begin(), tmp.end());
@@ -63,8 +63,7 @@ int Span::shortestSpan() const
 
 int Span::longestSpan() const
 {
-    if (this->_vector.size() < 3)
-        std::out_of_range("Too short size");
-    return (*std::max_element(this->_vector.begin(), this->_vector.end())
-            - *std::min_element(this->_vector.begin(), this->_vector.end()));
+    if (this->_vector.size() < 2)
+        throw std::out_of_range("Too short size");
+    return *std::max_element(this->_vector.begin(), this->_vector.end()) - *std::min_element(this->_vector.begin(), this->_vector.end());
 }

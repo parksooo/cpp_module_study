@@ -6,27 +6,28 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 22:12:09 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/13 22:13:47 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:42:47 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
-
+#include <iostream>
+#include <list>
 int main()
 {
 	{
 		MutantStack<int> mstack;
 		mstack.push(5);
 		mstack.push(17);
-		std::cout << mstack.top() << std::endl;
+		std::cout << "top : " << mstack.top() << std::endl;
 		mstack.pop();
-		std::cout << mstack.size() << std::endl;
+		std::cout << "size : " << mstack.size() << std::endl;
 		mstack.push(3);
 		mstack.push(5);
 		mstack.push(737);
 		mstack.push(0);
-		MutantStack<int>::iterator it = mstack.begin();
-		MutantStack<int>::iterator ite = mstack.end();
+		MutantStack<int>::reverse_iterator it = mstack.rbegin();
+		MutantStack<int>::reverse_iterator ite = mstack.rend();
 		++it;
 		--it;
 		while (it != ite)
@@ -43,9 +44,9 @@ int main()
 		std::list<int> list;
 		list.push_back(5);
 		list.push_back(17);
-		std::cout << list.back() << std::endl;
+		std::cout << "top : " << list.back() << std::endl;
 		list.pop_back();
-		std::cout << list.size() << std::endl;
+		std::cout << "size : " << list.size() << std::endl;
 		list.push_back(3);
 		list.push_back(5);
 		list.push_back(737);

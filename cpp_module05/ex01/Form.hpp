@@ -25,13 +25,13 @@ class Form {
             void beSigned(Bureaucrat &obj);
             void checkGrade(int grade);
             class GradeTooHighException : public std::exception{
-				public :
+                public :
 						const char * what(void) const throw();
 			};
-			class GradeTooLowException : public std::exception{
-				public :
+            class GradeTooLowException : public std::exception{
+                public :
 						const char * what(void) const throw();
-			};
+            };
 };
 std::ostream& operator<<(std::ostream& os, const Form &ob);
 #endif

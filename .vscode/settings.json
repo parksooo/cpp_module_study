@@ -69,7 +69,9 @@
 		"variant": "cpp",
 		"cfloat": "cpp",
 		"list": "cpp",
-		"__cxx_version": "cpp"
+		"__cxx_version": "cpp",
+		"map": "cpp",
+		"__tree": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
 	"C_Cpp.dimInactiveRegions": false
