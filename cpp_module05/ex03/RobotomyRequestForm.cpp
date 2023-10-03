@@ -16,7 +16,7 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm()
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string name) : AForm(name, 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("default", target, 72, 45)
 {
 }
 
@@ -39,10 +39,14 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void RobotomyRequestForm::execute(Bureaucrat const &excutor) const
 {
+    if (excutor.getGrade() > this->getExecuteGrade())
+        throw GradeTooLowException();
+    if (this->getIsSigned() == false)
+        throw NotSignedException();
     checkExecute(excutor.getGrade());
     std::cout << "(Ready to DRILLLLLL)" << std::endl;
     if (rand() % 2)
-        std::cout << this->getName() << " has been robotized successfully." << std::endl;
+        std::cout << this->getTarget() << " has been robotized successfully." << std::endl;
     else
-        std::cout << this->getName() << " has been failed to robotize." << std::endl;
+        std::cout << this->getTarget() << " has been failed to robotize." << std::endl;
 }

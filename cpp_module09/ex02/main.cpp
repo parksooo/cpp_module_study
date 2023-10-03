@@ -25,15 +25,10 @@ int    validateArgumentsValues(std::string n) {
     return static_cast<int>(_value);
 }
 
-int main(int ac, char **av)
-{
+std::vector<int>    parseArguments(int ac, char **av) {
 	std::vector<int> valueVector;
-	
-    if (ac < 2) {
-        std::cout << "Error." << std::endl;
-        return 1;
-    }
     int i = 1;
+
     while (i < ac) {
         std::string argv(av[i]);
         std::istringstream ss(argv);
@@ -45,13 +40,29 @@ int main(int ac, char **av)
 				continue ;
 			_value = validateArgumentsValues(num);
             if (!num.empty() && _value < 0) {
-                std::cout << "Error." << std::endl;
-                return 1;
+                throw std::runtime_error("Error.");
             }
 			valueVector.push_back(_value);			
         }
 		i++;
     }
+    return valueVector;
+}
+
+int main(int ac, char **av)
+{
+	std::vector<int> valueVector;
+	
+    if (ac < 2) {
+        std::cout << "Error." << std::endl;
+        return 1;
+    }
+    try {
+        valueVector = parseArguments(ac, av);
+    } catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
+    
 	for (std::vector<int>::iterator iter = valueVector.begin(); iter != valueVector.end(); iter++) {
 		std::cout << *iter << std::endl;
 	}

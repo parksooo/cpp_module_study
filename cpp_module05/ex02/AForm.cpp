@@ -12,11 +12,11 @@
 
 #include "AForm.hpp"
 
-AForm::AForm() : name("unknown"), isSigned(false), signGrade(1), executeGrade(1)
+AForm::AForm() : name("unknown"), target("none"), isSigned(false), signGrade(1), executeGrade(1)
 {
 }
 
-AForm::AForm(std::string name, int signGrade, int executeGrade) : name(name), isSigned(false), signGrade(signGrade), executeGrade(executeGrade)
+AForm::AForm(std::string name, std::string target, int signGrade, int executeGrade) : name(name), target(target), isSigned(false), signGrade(signGrade), executeGrade(executeGrade)
 {
     try {
         checkGrade(signGrade);
@@ -32,7 +32,7 @@ AForm::AForm(std::string name, int signGrade, int executeGrade) : name(name), is
     }
 }
 
-AForm::AForm(const AForm &ob) : name(ob.name), isSigned(ob.isSigned), signGrade(ob.signGrade), executeGrade(ob.executeGrade)
+AForm::AForm(const AForm &ob) : name(ob.name), target(ob.target), isSigned(ob.isSigned), signGrade(ob.signGrade), executeGrade(ob.executeGrade)
 {
     try {
         checkGrade(ob.signGrade);
@@ -79,7 +79,10 @@ std::string AForm::getName() const
 {
     return this->name;
 }
-
+std::string AForm::getTarget() const
+{
+    return this->target;
+}
 bool AForm::getIsSigned() const
 {
     return this->isSigned;
@@ -142,7 +145,7 @@ const char *AForm::FileOpenFailException::what(void) const throw()
 std::ostream &operator<<(std::ostream &os, const AForm &ob)
 {
    os << "[Form Informations]" << "\n";
-   os << "Name : " << ob.getName() << "\n";
+   os << "Name : " << ob.getTarget() << "\n";
    os << "Signed : " << std::boolalpha << ob.getIsSigned() << "\n";
    os << "Sign Grade : " << ob.getSignGrade() << "\n";
    os << "Excute Grade : " << ob.getExecuteGrade() << "\n";

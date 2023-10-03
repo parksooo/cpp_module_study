@@ -17,7 +17,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm()
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name) : AForm(name, 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("default", target, 145, 137)
 {
 }
 
@@ -46,6 +46,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const &excutor) const
 {
     std::ofstream fout;
 
+    if (excutor.getGrade() > this->getExecuteGrade())
+        throw GradeTooLowException();
+    if (this->getIsSigned() == false)
+        throw NotSignedException();
     checkExecute(excutor.getGrade());
     fout.open(excutor.getName() + "_shrubbery", std::ios::out | std::ios::trunc);
     if (fout.fail())

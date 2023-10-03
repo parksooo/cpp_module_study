@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:09:18 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/12 16:06:31 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:55:18 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm()
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name) : AForm(name, 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("default", target, 145, 137)
 {
 }
 
@@ -46,6 +46,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const &excutor) const
 {
     std::ofstream fout;
 
+    if (excutor.getGrade() > this->getExecuteGrade())
+        throw GradeTooLowException();
+    if (this->getIsSigned() == false)
+        throw NotSignedException();
     checkExecute(excutor.getGrade());
     fout.open(excutor.getName() + "_shrubbery", std::ios::out | std::ios::trunc);
     if (fout.fail())

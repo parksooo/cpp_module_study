@@ -21,17 +21,19 @@ class Bureaucrat;
 class AForm {
     private :
             const std::string name;
+            const std::string target;
             bool isSigned;
             const int signGrade;
             const int executeGrade;
 
     public :
             AForm();
-            AForm(std::string name, int signGrade, int executeGrade);
+            AForm(std::string name, std::string target, int signGrade, int executeGrade);
             AForm(const AForm &ob);
             AForm&       operator=(const AForm &ob);
             virtual ~AForm();
             std::string getName() const;
+            std::string getTarget() const;
             bool getIsSigned() const;
             int getSignGrade() const;
             int getExecuteGrade() const;
