@@ -17,6 +17,5 @@ int main (int ac, char **av) {
         std::cout << "Invalid Arguments" << std::endl;
         return 1;
     }
-    ScalarType st(av[1]);
-    st.convertAll();
+    ScalarType::convertAll(av[1]);
 }

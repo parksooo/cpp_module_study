@@ -19,26 +19,15 @@ ScalarType::ScalarType()
 {
 }
 
-ScalarType::ScalarType(std::string arg)
+ScalarType::ScalarType(const ScalarType &ob)
 {
-    try {
-        this->_str = arg;
-    } catch (std::bad_alloc &e) {
-        std::cout << "Too big for Allocated.." << std::endl;
-        exit(1);
-    }
-}
-
-ScalarType::ScalarType(const ScalarType &ob) : _str(ob._str), _float(ob._float), _double(ob._double)
-{
+    static_cast<void>(ob);
 }
 
 ScalarType &ScalarType::operator=(const ScalarType &ob)
 {
     if (this != &ob) {
-        this->_str = ob._str;
-        this->_float = ob._float;
-        this->_double = ob._double;
+        return *this;
     }
     return *this;
 }
@@ -60,61 +49,67 @@ bool findZero(std::string _str) {
     return true;
 }
 
-void ScalarType::convertChar() const
+void ScalarType::convertChar(double _double)
 {
-    if (isnan(this->_double) || isinf(this->_double) || this->_double < 0 || this->_double > 127) {
+    if (isnan(_double) || isinf(_double) || _double < 0 || _double > 127) {
         std::cout << "char: impossible" << std::endl;
         return ;
     }
-    if (!std::isprint(this->_double)) {
+    if (!std::isprint(_double)) {
         std::cout << "char: Non displayable" << std::endl;
         return ;
     }
-    std::cout << "char: '" << static_cast<char>(this->_double) << "'" << std::endl;
+    std::cout << "char: '" << static_cast<char>(_double) << "'" << std::endl;
 }
 
-void ScalarType::convertInt() const
+void ScalarType::convertInt(double _double)
 {
-    if (isnan(this->_double) || isinf(this->_double) || this->_double < INT_MIN || this->_double > INT_MAX) {
+    if (isnan(_double) || isinf(_double) || _double < INT_MIN || _double > INT_MAX) {
         std::cout << "int: impossible" << std::endl;
         return ;
     }
-    std::cout << "int: " << static_cast<int>(this->_double) << std::endl;
+    std::cout << "int: " << static_cast<int>(_double) << std::endl;
 }
 
-void ScalarType::convertFloat()
+void ScalarType::convertFloat(double _double, std::string _str)
 {
-    if (errno == ERANGE || (!isinf(this->_double) && (this->_double < -FLT_MAX || this->_double > FLT_MAX))) {
+    if (errno == ERANGE || (!isinf(_double) && (_double < -FLT_MAX || _double > FLT_MAX))) {
         std::cout << "float: impossible" << std::endl;
         return ;
     }
-    this->_float = static_cast<float>(this->_double);
-    std::cout << "float: " << this->_float;
-    if (!isnan(this->_float) && !isinf(this->_float)
-        && (this->_str.find('.') == std::string::npos || findZero(this->_str)))
+    float _float = static_cast<float>(_double);
+    std::cout << "float: " << _float;
+    if (!isnan(_float) && !isinf(_float)
+        && (_str.find('.') == std::string::npos || findZero(_str)))
         std::cout << ".0";
     std::cout << "f" << std::endl;
 }
 
-void ScalarType::convertDouble() const
+void ScalarType::convertDouble(double _double, std::string _str)
 {
     if (errno == ERANGE) {
         std::cout << "double: impossible" << std::endl;
         return ;
     }
-    std::cout << "double: " << this->_double;
-    if (!isnan(this->_double) && !isinf(this->_double)
-        && (this->_str.find('.') == std::string::npos || findZero(this->_str)))
+    std::cout << "double: " << _double;
+    if (!isnan(_double) && !isinf(_double)
+        && (_str.find('.') == std::string::npos || findZero(_str)))
         std::cout << ".0";
     std::cout << std::endl;
 }
 
-
-void ScalarType::convertAll()
+void ScalarType::convertAll(std::string arg)
 {
-    this->_double = std::strtod(this->_str.c_str(), NULL);
-    convertChar();
-    convertInt();
-    convertFloat();
-    convertDouble();
+    std::string _str;
+    try {
+        _str = arg;
+    } catch (std::bad_alloc &e) {
+        std::cout << "Too big for Allocated.." << std::endl;
+        exit(1);
+    }
+    double _double = std::strtod(_str.c_str(), NULL);
+    convertChar(_double);
+    convertInt(_double);
+    convertFloat(_double, _str);
+    convertDouble(_double, _str);
 }

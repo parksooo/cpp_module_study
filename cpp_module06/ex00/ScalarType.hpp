@@ -16,19 +16,15 @@
 
 class ScalarType {
     private :
-            std::string _str;
-            float _float;
-            double _double;
-            void convertChar() const;
-            void convertInt() const;
-            void convertFloat();
-            void convertDouble() const;
-    public  :
+            static void convertChar(double _double);
+            static void convertInt(double _double);
+            static void convertFloat(double _double, std::string _str);
+            static void convertDouble(double _double, std::string _str);
             ScalarType();
-            ScalarType(std::string arg);
             ScalarType(const ScalarType &ob);
             ScalarType& operator=(const ScalarType &ob);
             ~ScalarType();
-            void convertAll();
+    public  :
+            static void convertAll(std::string arg);
 };
 #endif
