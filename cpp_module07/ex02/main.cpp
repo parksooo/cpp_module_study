@@ -7,12 +7,19 @@ int main(int, char**)
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
+
     for (int i = 0; i < MAX_VAL; i++)
     {
         const int value = rand();
         numbers[i] = value;
         mirror[i] = value;
     }
+
+    // for (int i = 0; i < MAX_VAL; i++) {
+    //     std::cout << numbers[i] << ", " << mirror[i] << std::endl;
+    // }
+
+
     //SCOPE
     {
         Array<int> tmp = numbers;
@@ -27,25 +34,20 @@ int main(int, char**)
             return 1;
         }
     }
-    try
-    {
+    
+    try {
         numbers[-2] = 0;
-    }
-    catch(const std::exception& e)
-    {
+    } catch(const std::exception& e) {
         std::cerr << e.what() << "\n";
     }
-    try
-    {
+    
+    try {
         numbers[MAX_VAL] = 0;
-    }
-    catch(const std::exception& e)
-    {
+    } catch(const std::exception& e) {
         std::cerr << e.what() << "\n";
     }
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
+    for (int i = 0; i < MAX_VAL; i++) {
         numbers[i] = rand();
     }
 
@@ -54,15 +56,18 @@ int main(int, char**)
         std::cout << test1[i] << std::endl;
     
     Array<int> test2;
-    try
-    {
+    
+    try {
         std::cout << test2[0] << std::endl;
-    }
-    catch(const std::exception& e)
-    {
+    } catch(const std::exception& e) {
         std::cerr << e.what() << "\n";
     }
     
+    Array<double> mytest(10);
+    mytest[0] = 10.456;
+
+    std::cout << mytest[0] << std::endl;
+
     delete [] mirror;
     return 0;
 }

@@ -22,6 +22,13 @@ void    iter(T array[], size_t len, void (*func)(T&))
         func(array[i]);
 }
 
+template <typename T>
+void    iter(const T array[], const size_t len, void (*func)(T&))
+{
+    for (size_t i = 0; i < len; i++)
+        func(array[i]);
+}
+
 template<typename T>
 void    display(T &value)
 {

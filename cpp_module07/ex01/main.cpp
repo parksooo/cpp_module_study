@@ -16,7 +16,7 @@ int main() {
     int num[5] = {0, 1, 2, 3, 4};
     std::string _str[5] = {"a", "b", "c", "d", "e"};
 
-    iter(num, 5, display);
+    iter(num, 5, ::display);
     std::cout << std::endl;
-    iter(_str, 5, display);
+    iter(_str, 5, ::display);
 }
