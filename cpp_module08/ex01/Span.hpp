@@ -16,7 +16,7 @@
 # include <vector>
 
 class Span {
-    private :
+    public :
             std::vector<int> _vector;
     public  :
             Span();

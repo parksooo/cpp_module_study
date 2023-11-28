@@ -76,7 +76,9 @@
 		"__verbose_abort": "cpp",
 		"clocale": "cpp",
 		"compare": "cpp",
-		"concepts": "cpp"
+		"concepts": "cpp",
+		"version": "cpp",
+		"set": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
 	"C_Cpp.dimInactiveRegions": false

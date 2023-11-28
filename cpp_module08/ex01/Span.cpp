@@ -43,6 +43,15 @@ void Span::addNumber(int num)
 {
     if (this->_vector.size() >= this->_vector.capacity())
         throw std::runtime_error("No capacity of Span");
+    
+    std::vector<int> tmp = this->_vector;
+    tmp.push_back(num);
+    std::sort(tmp.begin(), tmp.end());
+    tmp.erase(std::unique(tmp.begin(), tmp.end()), tmp.end());
+
+    if (tmp.size() == this->_vector.size())
+        throw std::runtime_error("Duplicated number");
+
     this->_vector.push_back(num);
 }
 

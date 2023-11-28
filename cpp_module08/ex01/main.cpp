@@ -13,6 +13,7 @@
 #include "Span.hpp"
 #include <exception>
 #include <list>
+
 int main() {
     std::cout << "------ sp ------" << std::endl;
     Span sp = Span(5);
@@ -30,7 +31,13 @@ int main() {
     Span span(10000);
     for (int i = 1; i <= 9998; i++)
         span.addNumber(i);
-    span.addNumber(9998);
+    
+    try {
+        span.addNumber(1);
+    } catch(const std::exception &e) {
+        std::cout << e.what() << "\n";
+    }
+    span.addNumber(9999);
     span.addNumber(100000);
     std::cout << span.shortestSpan() << std::endl;
     std::cout << span.longestSpan() << std::endl;
@@ -124,5 +131,6 @@ int main() {
     }
     std::cout << test.shortestSpan() << "\n";
     std::cout << test.longestSpan() << "\n";
+
     return 0;
 }
