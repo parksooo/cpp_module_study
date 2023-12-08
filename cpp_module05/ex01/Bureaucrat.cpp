@@ -6,7 +6,7 @@
 /*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:41:37 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/11 15:41:38 by suhwpark         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:43:04 by suhwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ Bureaucrat::Bureaucrat(Bureaucrat const &ob) : name(ob.getName()), grade(ob.getG
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &ob)
 {
     if (this != &ob)
+    {
+        const_cast<std::string&>(this->name) = ob.getName();
         this->grade = ob.getGrade();
+    }
     return *this;
 }
 

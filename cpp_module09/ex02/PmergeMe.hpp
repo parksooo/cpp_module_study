@@ -1,18 +1,46 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: suhwpark <suhwpark@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:16:21 by suhwpark          #+#    #+#             */
-/*   Updated: 2023/09/18 14:44:35 by suhwpark         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
+
 # include <iostream>
 # include <vector>
-# include <sstream>
+# include <list>
+# include <ctime>
+# include <cstdlib>
+# include <iomanip>
+
+class PmergeMe {
+    private :
+            std::vector<int> _originVector;
+            std::vector<int> _sortedVector;
+            std::list<int> _originList;
+            std::list<int> _sortedList;
+
+            PmergeMe();
+
+            void setValueOfList(int idx, int value);
+            int getValueOfList(std::list<int> _list, int idx);
+
+            void printBefore();
+            void printAfter();
+            void printVector(std::vector<int> _vector);
+            void printList(std::list<int> _list);
+
+            void vectorSort();
+            void listSort();
+
+            void mergeInsertSortInVector(int _left, int _right, int _p);
+            void mergeInsertSortInList(int _left, int _right, int _p);
+
+            void insertInVector(int _left, int _right);
+            void insertInList(int _left, int _right);
+
+            void mergeInVector(int _left, int _mid, int _right);
+            void mergeInList(int _left, int _mid, int _right);
+    public :
+            PmergeMe(std::vector<int> _vector, std::list<int> _list);
+            PmergeMe(const PmergeMe &ob);
+            PmergeMe& operator=(const PmergeMe &ob);
+            ~PmergeMe();
+            void startSort();
+};
 #endif
