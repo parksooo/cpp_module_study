@@ -1,46 +1,57 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include <iostream>
 # include <vector>
 # include <list>
-# include <ctime>
-# include <cstdlib>
-# include <iomanip>
+# include <iterator>
+# include <iostream>
+# include <exception>
 
 class PmergeMe {
-    private :
-            std::vector<int> _originVector;
-            std::vector<int> _sortedVector;
-            std::list<int> _originList;
-            std::list<int> _sortedList;
+    private	:
+            std::vector<int> _input;
+			std::vector<int> _mainChain;
+            std::vector<int> _pendingChain;
+            std::vector<int> _jacobsthal;
+            std::vector<std::pair<int, int> > _pairVec;
+            std::vector<int> _orderToInsertIndex;
+
+            std::list<int> _inputList;
+            std::list<int> _mainChainList;
+            std::list<int> _pendingChainList;
+            std::list<std::pair<int, int> > _pairList;
 
             PmergeMe();
-
-            void setValueOfList(int idx, int value);
-            int getValueOfList(std::list<int> _list, int idx);
-
-            void printBefore();
-            void printAfter();
-            void printVector(std::vector<int> _vector);
-            void printList(std::list<int> _list);
-
-            void vectorSort();
-            void listSort();
-
-            void mergeInsertSortInVector(int _left, int _right, int _p);
-            void mergeInsertSortInList(int _left, int _right, int _p);
-
-            void insertInVector(int _left, int _right);
-            void insertInList(int _left, int _right);
-
-            void mergeInVector(int _left, int _mid, int _right);
-            void mergeInList(int _left, int _mid, int _right);
-    public :
-            PmergeMe(std::vector<int> _vector, std::list<int> _list);
-            PmergeMe(const PmergeMe &ob);
-            PmergeMe& operator=(const PmergeMe &ob);
+            void setJacobsthalVector();
+            void setOrderToInsertIndex(int n);
+            
+            //vector sort
+            void sortVector();
+            int makePairVector();
+            void setChains();
+            void mergePair(std::vector<std::pair<int, int> > &container, int left, int right);
+            void merge(std::vector<std::pair<int, int> > &container, int first, int middle, int last);
+            void insertPendingChain(int _unpairedValues); 
+            int binaryInsert(std::vector<int> &mainChain, int n, int begin, int end);
+            
+            //list sort
+            void sortList();
+            void vectorToList();
+            int makePairList();
+            void setChainsOfList();
+            void mergePairOfList(std::list<std::pair<int, int> > &container, int left, int right);
+            void mergeOfList(std::list<std::pair<int, int> > &container, int first, int middle, int last);
+            void insertPendingChainOfList(int _unpairedValues);
+            int binaryInsertOfList(std::list<int> &mainChain, int n, int begin, int end);
+            int getListValue(std::list<int> &list, int idx);
+            void setListValue(std::list<int> &list, int idx, int value);
+            std::pair<int, int> getPairInList(std::list<std::pair<int, int> > &container, int idx);
+            void setPairInList(std::list<std::pair<int, int> > &container, int idx, std::pair<int, int> value);
+    public  :
+            PmergeMe(int argc, char **argv);
+            PmergeMe(PmergeMe const &ob);
+	        PmergeMe &operator=(PmergeMe const &ob);
             ~PmergeMe();
-            void startSort();
+            void sort();
 };
 #endif

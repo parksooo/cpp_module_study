@@ -27,7 +27,7 @@ class BitCoinCalculator {
             std::multimap<std::string, float> 			dbData;
             std::string								validateDbDate(std::string _date);
             float									validateDbFloat(std::string _value);
-			std::multimap<std::string, float>			calculateInputFile(char *file);
+			void			                        calculateInputFile(char *file);
             std::pair<std::string, float>	        filemakePairs(std::string read);
             void                                    checkCsvFile();
             void                                    printMyBitCoin(std::pair<std::string, float> pair);

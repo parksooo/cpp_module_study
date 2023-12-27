@@ -39,7 +39,7 @@ void BitCoinCalculator::letSomeTasteBitCoin(char *file)
 	
 	try {
 		checkCsvFile();
-		inputMap = calculateInputFile(file);
+		calculateInputFile(file);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
@@ -185,11 +185,10 @@ std::pair<std::string, float>	BitCoinCalculator::filemakePairs(std::string read)
 	return result;
 }
 
-std::multimap<std::string, float> BitCoinCalculator::calculateInputFile(char	*file)
+void BitCoinCalculator::calculateInputFile(char	*file)
 {
     std::ifstream input(file);
 	std::string read;
-	std::multimap<std::string, float> result;
 
 	if (!input)
 		throw InvalidInputFile();
@@ -199,7 +198,6 @@ std::multimap<std::string, float> BitCoinCalculator::calculateInputFile(char	*fi
 		std::pair<std::string, float> pairs = filemakePairs(read);
 		printMyBitCoin(pairs);	
 	}
-	return result;
 }
 
 void	printPairSource(std::string _date, float _value, float _advantage)
